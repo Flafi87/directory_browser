@@ -1,4 +1,4 @@
-import { GET_DIRECTORY, BACK_DIRECTORY } from "../../types";
+import { GET_DIRECTORY, BACK_DIRECTORY, LOADING } from "../../types";
 
 const initialState = {
   files: [],
@@ -29,6 +29,12 @@ export default (state = initialState, action) => {
         directories: action.payload.directories,
         location: action.payload.location,
         path: [...action.payload.path],
+        loading: false,
+      };
+    case LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;
