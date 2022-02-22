@@ -4,43 +4,37 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import FolderIcons from "./FolderIcons.jsx";
 import FileIcons from "./FileIcons.jsx";
+import { useStyles } from "./style.js";
 import DirectoryPath from "./DirectoryPath.jsx";
+import ErrorModal from "./ErrorModal.jsx";
+import EmptyDirectory from "./EmptyDirectory.jsx";
 
 const MainWindow = () => {
-  const loading = useSelector((state) => state.directory.loading);
-
-  if (!loading) {
-    return (
-      <Box
-        sx={{
-          bgcolor: "#222530",
-          width: "100vw",
-          height: "100vh",
-          color: "white",
-          padding: "10px",
-        }}
-      >
-        <Box display={"flex"}><DirectoryPath/></Box>
-        <Box display={"flex"} flexWrap={"wrap"} sx={{ padding: "10px" }}>
-          <FolderIcons />
-          <FileIcons />
-        </Box>
-      </Box>
-    );
-  }
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        bgcolor: "#222530",
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
-      <CircularProgress sx={{position: "absolute",top:"50%"}}/>
-    </Box>
+  const { loading, files, directories } = useSelector(
+    (state) => state.directory
   );
+
+  const classes = useStyles();
+
+  const content = loading ? (
+    <CircularProgress className={classes.progress} />
+  ) : (
+    <>
+      <Box className={classes.path}>
+        <DirectoryPath />
+      </Box>
+      <Box className={classes.fileLocation}>
+        <FolderIcons iconStyle={classes.iconStyle} />
+        <FileIcons iconStyle={classes.iconStyle} />
+        <EmptyDirectory />
+      </Box>
+      <ErrorModal
+        errorModalButtonContainer={classes.errorModalButtonContainer}
+      />
+    </>
+  );
+
+  return <Box className={classes.dashboard}>{content}</Box>;
 };
 
 export default MainWindow;

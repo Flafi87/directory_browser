@@ -10,8 +10,9 @@ const shortName = (name) => {
   }
   return name;
 };
+
 /**
- * File extension and name shortening middleware
+ * File extension extract and name shortening middleware
  */
 export const fileExtension =
   () =>
