@@ -5,7 +5,7 @@ const initialState = {
   directories: [],
   location: "root",
   path: [],
-  loading: true,
+  loading: false,
 };
 
 export default (state = initialState, action) => {
