@@ -20,21 +20,25 @@ const MainWindow = () => {
     <CircularProgress className={classes.progress} />
   ) : (
     <>
+        <FolderIcons iconStyle={classes.iconStyle} />
+        <FileIcons iconStyle={classes.iconStyle} />
+        <EmptyDirectory />
+    </>
+  );
+
+  return (
+    <Box className={classes.dashboard}>
       <Box className={classes.path}>
         <DirectoryPath />
       </Box>
       <Box className={classes.fileLocation}>
-        <FolderIcons iconStyle={classes.iconStyle} />
-        <FileIcons iconStyle={classes.iconStyle} />
-        <EmptyDirectory />
+        {content}
       </Box>
       <ErrorModal
         errorModalButtonContainer={classes.errorModalButtonContainer}
       />
-    </>
+    </Box>
   );
-
-  return <Box className={classes.dashboard}>{content}</Box>;
 };
 
 export default MainWindow;
