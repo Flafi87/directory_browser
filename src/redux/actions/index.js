@@ -6,6 +6,8 @@ import {
   CLEAR_ERROR,
 } from "../types";
 
+const { API } = process.env;
+
 export const fetchDirectory =
   (id = "") =>
   (dispatch, getState) => {
@@ -19,9 +21,7 @@ export const fetchDirectory =
           payload: true,
         });
       }
-      fetch(
-        `https://fnp5vd20r2.execute-api.us-east-1.amazonaws.com/dev/directories/${id}`
-      )
+      fetch(`${API}${id}`)
         .then((response) => {
           if (response.status === 200) {
             return response.json();
@@ -71,9 +71,7 @@ export const jumpBackDirectory =
         type: LOADING,
         payload: true,
       });
-      fetch(
-        `https://fnp5vd20r2.execute-api.us-east-1.amazonaws.com/dev/directories/${path[id].id}`
-      )
+      fetch(`${API}${path[id].id}`)
         .then((response) => response.json())
         .then((data) => {
           const { name, files, directories } = data;
