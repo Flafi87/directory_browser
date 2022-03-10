@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import store from "../redux/store/store.js";
 import { useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
@@ -25,7 +25,7 @@ const DirectoryPath = () => {
           key={location}
           sx={{ cursor: "pointer" }}
         >
-          {location} / &nbsp;
+          {location} /&nbsp;
         </Typography>
       );
     }
