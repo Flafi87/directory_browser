@@ -11,7 +11,7 @@ const { API } = process.env;
 
 const request = axios.create({
   baseURL: API,
-  timeout: 1000,
+  timeout: 5000,
 });
 
 const createError = (dispatch, error) => {
@@ -27,10 +27,7 @@ const createError = (dispatch, error) => {
 
 export const fetchDirectory =
   (id = "") =>
-  (dispatch, getState) => {
-    const { directory } = getState();
-    const { loading } = directory;
-
+  (dispatch) => {
     if (id === "") {
       dispatch({
         type: LOADING,
