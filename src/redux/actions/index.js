@@ -28,12 +28,10 @@ const createError = (dispatch, error) => {
 export const fetchDirectory =
   (id = "") =>
   (dispatch) => {
-    if (id === "") {
-      dispatch({
-        type: LOADING,
-        payload: true,
-      });
-    }
+    dispatch({
+      type: LOADING,
+      payload: true,
+    });
     request({
       url: `/${id}`,
     }).then(({ status, data }) => {
